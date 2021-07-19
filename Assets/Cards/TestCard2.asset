@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7cbc9a99fc1b2448d3f58f4ebbbae6, type: 3}
+  m_Name: TestCard2
+  m_EditorClassIdentifier: 
+  cardName: TestCard2
+  rulesText: Move a distance of 2 spaces
+  cost: 1
+  cardImage: {fileID: 0}
+  innerColour: {r: 0.22364914, g: 1, b: 0, a: 1}
+  id: 1
+  movement: 2
+  damage: 0
+  range: 0
