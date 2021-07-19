@@ -69,7 +69,7 @@ public class CardManager : MonoBehaviour
 				Debug.Log("Played Card for Damage");
 				GridManager.instance.DamageUnit(GridManager.instance.GetActiveUnit(), GridManager.instance.GetActiveAttackTarget(), card_.GetStats().range, card_.GetStats().damage);
 			}
-			if (card_.GetStats().movement > 0)
+			else if (card_.GetStats().movement > 0)
 			{
 				Debug.Log("Played Card for Movement");
 				GridManager.instance.MoveUnit(GridManager.instance.GetActiveUnit(), GridManager.instance.GetTargetTile(), card_.GetStats().movement);
