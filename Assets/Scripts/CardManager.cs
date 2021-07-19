@@ -82,7 +82,7 @@ public class CardManager : MonoBehaviour
 		}
 	}
 
-	// draws a number up to the 
+	// draws a number up to the maximum hand size
 	public void DrawNewHand()
 	{
 		// discard current hand
