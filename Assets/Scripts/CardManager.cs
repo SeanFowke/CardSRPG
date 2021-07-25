@@ -25,6 +25,7 @@ public class CardManager : MonoBehaviour
 	// what card was most recently played, added for more functionality down the line
 	Card playedCard = null;
 	[SerializeField] int energyTotal;
+	int energyTotalInit;
 	// all of the cards the player has in their deck
 	[SerializeField] List<CardStats> deck = new List<CardStats>();
 	// has the card already been drawn?
@@ -37,6 +38,8 @@ public class CardManager : MonoBehaviour
 	[SerializeField] GameObject cardPrefab;
 	[SerializeField] DropCard handArea;
 
+	[SerializeField] Text energyText;
+
 	
 
 	void Start()
@@ -45,8 +48,11 @@ public class CardManager : MonoBehaviour
 		for (int i = 0; i < deck.Count; i++)
 		{
 			deckDrawnYet.Add(false);
+			deck[i].id = i;
 		}
 
+		energyTotalInit = energyTotal;
+		energyText.text = "Energy Total: " + energyTotal.ToString();
 		DrawNewHand();
 	}
 
@@ -74,6 +80,11 @@ public class CardManager : MonoBehaviour
 				Debug.Log("Played Card for Movement");
 				GridManager.instance.MoveUnit(GridManager.instance.GetActiveUnit(), GridManager.instance.GetTargetTile(), card_.GetStats().movement);
 			}
+
+			cardsOnTheUI.Remove(card_.gameObject);
+			hand.Remove(card_);
+
+			energyText.text = "Energy Total: " + energyTotal.ToString();
 		}
 		else
 		{
@@ -85,20 +96,20 @@ public class CardManager : MonoBehaviour
 	// draws a number up to the maximum hand size
 	public void DrawNewHand()
 	{
-		// discard current hand
-		foreach (Card c in hand)
+		energyTotal = energyTotalInit;
+		// create a new list in indices that haven't been drawn yet
+		List<int> cardsThatCanBeDrawn = new List<int>();
+
+		foreach (GameObject g in cardsOnTheUI)
 		{
-			if (c != null)
+			if (g != null)
 			{
-				Destroy(c.gameObject);
+				Destroy(g);
 			}
 		}
 
 		cardsOnTheUI.Clear();
 		hand.Clear();
-
-		// create a new list in indices that haven't been drawn yet
-		List<int> cardsThatCanBeDrawn = new List<int>();
 
 		// draw five new cards
 		for (int i = 0; i < handSize; i++)
@@ -117,6 +128,8 @@ public class CardManager : MonoBehaviour
 			if (cardsThatCanBeDrawn.Count == 0)
 			{
 				ReshuffleDeck(cardsThatCanBeDrawn);
+				i--;
+				continue;
 			}
 
 			// pick a random number and then load up the associated card
@@ -188,7 +201,7 @@ public class CardManager : MonoBehaviour
 		// go and reset the cards already chosen
 		for (int j = 0; j < cardsAlreadyChosen_.Count; j++)
 		{
-			deckDrawnYet[j] = true;
+			deckDrawnYet[cardsAlreadyChosen_[j]] = true;
 		}
 	}
 }

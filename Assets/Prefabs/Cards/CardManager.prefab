@@ -50,5 +50,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52c3d842b2baae1418c0624d08161412, type: 2}
   - {fileID: 11400000, guid: fefc1cdaba3f67645857a2c9e15d4d7d, type: 2}
   - {fileID: 11400000, guid: 816bd081d2b4cdd43916dc52b6facccb, type: 2}
+  - {fileID: 11400000, guid: 7f38a9aead2e3984aa926d653ee7df42, type: 2}
+  - {fileID: 11400000, guid: f4b648fdeee023942b51ea4d50cbb22d, type: 2}
+  - {fileID: 11400000, guid: 52c3d842b2baae1418c0624d08161412, type: 2}
+  - {fileID: 11400000, guid: fefc1cdaba3f67645857a2c9e15d4d7d, type: 2}
+  - {fileID: 11400000, guid: 816bd081d2b4cdd43916dc52b6facccb, type: 2}
   cardPrefab: {fileID: 8982776556007847421, guid: fe766abac56488d4ea62aabd20d230e5, type: 3}
   handArea: {fileID: 0}
+  energyText: {fileID: 0}

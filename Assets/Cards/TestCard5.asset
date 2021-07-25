@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: TestCard5
   rulesText: Attack for 2 Damage with 2 Range
-  cost: 1
+  cost: 2
   cardImage: {fileID: 0}
   innerColour: {r: 1, g: 0, b: 0.056522846, a: 1}
   id: 4

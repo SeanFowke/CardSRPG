@@ -9,5 +9,7 @@ public class NextTurn : MonoBehaviour
 	{
 		//for now just call draw a new hand on the Card manager
 		CardManager.instance.DrawNewHand();
+		// give the enemy their turn
+		AIManager.instance.EnemyTurn();
 	}
 }

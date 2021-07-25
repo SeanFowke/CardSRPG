@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: TestCard3
   rulesText: Move a distance of 3 spaces
-  cost: 1
+  cost: 2
   cardImage: {fileID: 0}
   innerColour: {r: 0.22364914, g: 1, b: 0, a: 1}
   id: 2

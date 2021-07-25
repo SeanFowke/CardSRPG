@@ -60,6 +60,7 @@ public class GridManager : MonoBehaviour
 		{
 			activeUnit = null;
 			targetTile = null;
+			activeAttackTarget = null;
 		}
     }
 
@@ -97,6 +98,8 @@ public class GridManager : MonoBehaviour
 		u = g.GetComponent<Unit>();
 		units.Add(u);
 		u.Initialise(0, 0, 3);
+		// add the the unit to the AI Manager
+		AIManager.instance.playerUnits.Add(u);
 
 		Tile SpawnLoc2 = GetTile(0, 2);
 		g = Instantiate(playerUnitPrefab, new Vector3(SpawnLoc2.transform.position.x, SpawnLoc2.transform.position.y, -1), Quaternion.identity);
@@ -104,6 +107,7 @@ public class GridManager : MonoBehaviour
 		units.Add(g.GetComponent<Unit>());
 		u = g.GetComponent<Unit>();
 		u.Initialise(1, 0, 2);
+		AIManager.instance.playerUnits.Add(u);
 
 		// Enemy Units
 		Tile SpawnLoc3 = GetTile(4, 2);
@@ -112,6 +116,7 @@ public class GridManager : MonoBehaviour
 		units.Add(g.GetComponent<Unit>());
 		u = g.GetComponent<Unit>();
 		u.Initialise(2, 4, 2);
+		AIManager.instance.enemies.Add(u);
 
 		Tile SpawnLoc4 = GetTile(4, 3);
 		g = Instantiate(enemyUnitPrefab, new Vector3(SpawnLoc4.transform.position.x, SpawnLoc4.transform.position.y, -1), Quaternion.identity);
@@ -119,6 +124,7 @@ public class GridManager : MonoBehaviour
 		units.Add(g.GetComponent<Unit>());
 		u = g.GetComponent<Unit>();
 		u.Initialise(3, 4, 3);
+		AIManager.instance.enemies.Add(u);
 
 
 	}
@@ -153,17 +159,6 @@ public class GridManager : MonoBehaviour
 			return null;
 		}
 	}
-
-
-	//public void MoveUnit(Unit unit_,Vector2 endPos_, int movementRange_)
-	//{
-	//	if (endPos_.x <= rows && endPos_.y <= columns && GetTile((int)endPos_.x, (int)endPos_.y) != null && !GetTile((int)endPos_.x, (int)endPos_.y).GetIsOccuiped())
-	//	{
-	//		// move the Unit and mark the tile as now being occupied
-	//		unit_.Move(GetTile((int)endPos_.x, (int)endPos_.y));
-	//		GetTile((int)endPos_.x, (int)endPos_.y).SetIsOccupied(true);
-	//	}
-	//}
 
 	// these vectors don't represent world space but grid coords 
 	public void MoveUnit(Unit unit_, Tile targetTile_, int movementRange_)
@@ -233,9 +228,21 @@ public class GridManager : MonoBehaviour
 		{
 			targetUnit_.DamageUnit(damage_);
 		}
+		else
+		{
+			Debug.Log("Not within range to attack");
+		}
 
 		activeAttackTarget = null;
 		activeUnit = null;
 	}
 
+	public int GetRows()
+	{
+		return rows;
+	}
+	public int GetColumns()
+	{
+		return columns;
+	}
 }

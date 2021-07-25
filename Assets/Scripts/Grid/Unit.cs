@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
 	int id;
 	[SerializeField] int health;
+	int maxHealth;
 	int movementRange;
 	int row;
 	int column;
 	[SerializeField] bool isPlayerControlled;
+
+	[SerializeField] Slider healthBar;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+		maxHealth = health;
+	}
 
     // Update is called once per frame
     void Update()
@@ -57,6 +61,11 @@ public class Unit : MonoBehaviour
 						GridManager.instance.SetActiveUnit(this);
 						Debug.Log("Set Active Unit");
 					}
+					else
+					{
+						GridManager.instance.SetAttackTarget(this);
+						Debug.Log("Set Attack Target");
+					}
 				}
 			}
 		}
@@ -96,6 +105,7 @@ public class Unit : MonoBehaviour
 		if (health - damage_ > 0)
 		{
 			health -= damage_;
+			healthBar.value = (float)((float)health / (float)maxHealth); 
 		}
 		else
 		{
